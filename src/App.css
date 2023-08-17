@@ -1,0 +1,139 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+.form-input {
+  display: block;
+}
+
+.close-icon {
+  color: #000;
+  height: 24px;
+  float:left;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.gpxsrr { /*NoteItemView representation*/
+  height: 100%;
+  width: 100%;
+}
+
+/*account form css styles*/
+
+.loginGridPart, .registerGridPart {
+  display: inline-block;
+  width:50vw;
+  height:95vh;
+}
+
+.form_login {
+  height: fit-content;
+  margin-bottom: 0;
+}
+
+.mb-3 {
+  margin:2vh auto 3vh auto;
+  box-shadow: 0 0 3px gray;
+  display:block;
+  width:25vw;
+  height:6vh;
+}
+
+.mb-3:last-child {
+  margin-bottom: 1vh;
+}
+
+.mb-3-text {
+  display: block;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+}
+
+.toRegisterPanel {
+  justify-content: center;
+  text-align: center;
+  padding:0;
+  margin-top: 0;
+}
+
+.toRegisterPanel > p {
+  padding: 0;
+  margin: 0;
+}
+
+/*DashboardNav css styles*/
+
+.dashNavBtn {
+  font-family: 'Specimen', sans-serif;
+  display: block;
+  width: 100%;
+  height: 8vh;
+  display: grid;
+  grid-template-rows: auto auto auto;
+  font-size: 1.2rem;
+  text-align: center;
+  border:none;
+  background-color: unset;
+  transition: ease-in 0.8s;
+}
+
+.dashNavBtn:first-child {
+  border-bottom:1px solid #6666d6;
+}
+
+.dashNavBtn:hover {
+  background-color: #282c34;
+} 
+
+.dashNavBtn > a.dashNavLink {
+  display: block;
+  text-decoration: none !important;
+  line-height: fit-content;
+  color: white;
+  width: 100%;
+  height: 100%;
+}
+
+/*NotesMenu css styles*/
+
+.notesMenuBtn:hover {
+  background-color: #ddd;
+  color: #000080;
+  font-weight: 500;
+}
