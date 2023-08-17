@@ -2,7 +2,7 @@ import axios from 'axios'
 
 export class AlbumHandler {
 
-    baseURL = 'http://localhost:2000'
+    baseURL = 'http://memo-store2k23.vercel.app'
 
     sendImage(data) {
         let formData = new FormData()
