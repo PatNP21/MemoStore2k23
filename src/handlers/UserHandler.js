@@ -2,7 +2,7 @@ import axios from 'axios'
 
 export class UserHandler {
 
-    baseURL = 'http://memo-store2k23.vercel.app'
+    baseURL = 'http://localhost:2000'
 
     registerNewUser(data) {
         return axios.post(`${this.baseURL}/registerUser/`, data)

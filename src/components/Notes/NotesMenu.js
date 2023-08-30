@@ -51,6 +51,7 @@ function NotesMenu({item, unselectDeletedItem, user_id}) {
     notes_handler.addNewNote(data).then((res) => {
       console.log(res)
       unselectDeletedItem()
+      window.location.reload()
       activateAddNoteModal(false)
       setSuccessModal(true)
     }).catch(err => {

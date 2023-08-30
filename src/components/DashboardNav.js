@@ -1,5 +1,5 @@
-import React, {useEffect} from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import React, {useState, useEffect} from 'react'
+import { Link, useNavigate, PathMatch} from 'react-router-dom'
 import Button from 'react-bootstrap/Button';
 import Handlebars from 'handlebars'
 import styled from 'styled-components'
@@ -17,12 +17,15 @@ const Grid = styled.div`
 `*/
 
 function DashboardNav({id}) {
-    const options = ['album', 'notes']
+
+    const navigate = useNavigate() 
+    const options = ['album', 'notes', 'calendar']
+    const [presentId, setPresentId] = useState('0')
 
     useEffect(() => {
-        Handlebars.registerHelper('loud', (string) => {
-            return string.toUpperCase()
-        })
+        if (id) {
+            setPresentId(id)
+        }
     },[])
 
     return (
@@ -31,7 +34,7 @@ function DashboardNav({id}) {
                 return (
                     <Button className="dashNavBtn">
                         <div></div>
-                        <Link className="dashNavLink" to={'/dashboard/'+id+'/'+element.toLowerCase()} state={id}>
+                        <Link className="dashNavLink" to={'/dashboard/'+presentId+'/'+element.toLowerCase()} state={presentId} replace>
                             {element.toUpperCase()}
                         </Link>
                         <div></div>

@@ -2,7 +2,16 @@ import React, {useState, useEffect} from 'react'
 import {useForm} from 'react-hook-form'
 import AlbumHandler from '../../handlers/AlbumHandler'
 import styled from 'styled-components'
+import { useParams } from 'react-router-dom'
 
+const ControlPanel = styled.div`
+    width: 80vw;
+    height: 10vh;
+`
+const SubmitBtn = styled.button`
+    display: inline-block;
+
+`
 const Gallery = styled.div`
     width: 80vw;
     height: 70vh;
@@ -12,26 +21,37 @@ const Img = styled.img`
     height:20vh;
     float:left;
     margin: 10px 10px;
+    cursor: pointer;
 `
 
-function AlbumDashboard() {
+function AlbumDashboard({id}) {
 
     const album_handler = new AlbumHandler()
+    const params = useParams()
     const {register, handleSubmit} = useForm()
     const [file, setFile] = useState()
     const [images, setImages] = useState([])
 
     const sendImage = () => {
+        if(!id) {
+            id = params.id
+        }
         console.log(file)
-        album_handler.sendImage(file).then(res => {
+        try {
+            let res = album_handler.sendImage(file, id).then(() => {
+                setTimeout(() => window.location.reload(), 5000)
+            })
             console.log(res)
-        }).catch(err => {
+        } catch(err) {
             console.log(err)
-        })
+        }
     }
 
     useEffect(() => {
-        album_handler.getImages().then(res => {
+        if(!id) {
+            id = params.id
+        }
+        album_handler.getImages(id).then(res => {
             console.log(res)
             setImages(res.data.resources)
             console.log(images)
@@ -42,16 +62,26 @@ function AlbumDashboard() {
 
     return (
         <div>
-            <input 
-                type="file"
-                name="thefile"
-                onChange={e => {
-                    URL.createObjectURL(e.target.files[0])
-                    setFile(e.target.files[0])
-                }}
-            />
-
-            <button onClick={sendImage}>send image</button>
+            <ControlPanel>
+                <label className='label' htmlFor='fileinput'>
+                    Press here to select image from your device...
+                </label>
+                <input 
+                    id="fileinput"
+                    type="file"
+                    name="thefile"
+                    accept='.jpg'
+                    onChange={e => {
+                        URL.createObjectURL(e.target.files[0])
+                        setFile(e.target.files[0])
+                        if(file) {sendImage()}
+                    }}
+                />
+                {/*<SubmitBtn onClick={sendImage}>
+                    send image
+                </SubmitBtn>*/}
+            </ControlPanel>
+            
             <Gallery>
                 {images && images.map(item => {
                     return (

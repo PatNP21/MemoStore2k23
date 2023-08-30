@@ -3,7 +3,7 @@ import { Form } from 'react-router-dom'
 
 export class NotesHandler {
 
-    baseURL = 'http://memo-store2k23.vercel.app'
+    baseURL = 'http://localhost:2000'
 
     getUsersNotes(id) {
         return axios.get(`${this.baseURL}/getNotes/${id}`)

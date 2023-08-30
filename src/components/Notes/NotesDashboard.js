@@ -18,11 +18,12 @@ function NotesDashboard() {
       console.log("dashboard")
       console.log(id)
       {id && notes_handler.getUsersNotes(id).then(res => {
+        console.log('all is ok')
         setArray(res.data)
         setDataIsLoaded(true)
         console.log(res.data)
       }).catch(err => {
-        console.error(err)
+        console.log(err)
       })}
     },[])
   
